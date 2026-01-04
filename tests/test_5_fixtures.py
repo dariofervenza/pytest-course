@@ -10,3 +10,17 @@ import pytest
 from stuff.accum import Accumulator
 
 # fixtures are special functions that pytests calls before each test --> they will do the "arrange" in the arrange-act-assert pattern
+
+
+@pytest.fixture
+def accum():
+    # fixture has to return always an object, (and not create a global variable) 
+    return Accumulator()
+
+
+
+def test_accum_init_fix(accum: Accumulator):
+    assert accum.count == 0
+
+
+# this is an example of DEPENDENCY INJECTION --> pytests tries to find a fixture called accum
